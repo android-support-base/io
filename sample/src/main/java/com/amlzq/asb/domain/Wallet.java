@@ -1,12 +1,12 @@
-package com.amlzq.android.bean;
+package com.amlzq.asb.domain;
 
 import java.math.BigDecimal;
 
 /**
- * 订单
- * OrderInfo
+ * 钱包
+ * WalletInfo
  */
-public class OrderForm {
+public class Wallet {
 
     public BigDecimal amount; // 金额
 

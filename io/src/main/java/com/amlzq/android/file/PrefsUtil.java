@@ -57,21 +57,21 @@ public class PrefsUtil {
     public static String get(Context context, String key, String defValue) {
         if (checkFileName()) throw new NullPointerException("shared preferences file name is null");
 
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        if (sp == null) {
+        SharedPreferences preferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        if (preferences == null) {
             return defValue;
         }
-        return sp.getString(key, defValue);
+        return preferences.getString(key, defValue);
     }
 
     public static String get(Context context, String key) {
         if (checkFileName()) throw new NullPointerException("shared preferences file name is null");
 
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        if (sp == null) {
+        SharedPreferences preferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        if (preferences == null) {
             return null;
         }
-        return sp.getString(key, "");
+        return preferences.getString(key, "");
     }
 
     public static void save(Context context, String key, int value) {
@@ -85,11 +85,11 @@ public class PrefsUtil {
     public static int get(Context context, String key, int defValue) {
         if (checkFileName()) throw new NullPointerException("shared preferences file name is null");
 
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        if (sp == null) {
+        SharedPreferences preferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        if (preferences == null) {
             return defValue;
         }
-        return sp.getInt(key, defValue);
+        return preferences.getInt(key, defValue);
     }
 
     public static void save(Context context, String key, float value) {
@@ -103,11 +103,11 @@ public class PrefsUtil {
     public static float get(Context context, String key, float defValue) {
         if (checkFileName()) throw new NullPointerException("shared preferences file name is null");
 
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        if (sp == null) {
+        SharedPreferences preferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        if (preferences == null) {
             return defValue;
         }
-        return sp.getFloat(key, defValue);
+        return preferences.getFloat(key, defValue);
     }
 
     public static void save(Context context, String key, long value) {
@@ -121,11 +121,11 @@ public class PrefsUtil {
     public static long get(Context context, String key, long defValue) {
         if (checkFileName()) throw new NullPointerException("shared preferences file name is null");
 
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        if (sp == null) {
+        SharedPreferences preferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        if (preferences == null) {
             return defValue;
         }
-        return sp.getLong(key, defValue);
+        return preferences.getLong(key, defValue);
     }
 
     public static void save(Context context, String key, boolean value) {
@@ -139,11 +139,11 @@ public class PrefsUtil {
     public static boolean get(Context context, String key, boolean defValue) {
         if (checkFileName()) throw new NullPointerException("shared preferences file name is null");
 
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        if (sp == null) {
+        SharedPreferences preferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        if (preferences == null) {
             return defValue;
         }
-        return sp.getBoolean(key, defValue);
+        return preferences.getBoolean(key, defValue);
     }
 
     public static void clearAll(Context context) {
@@ -159,11 +159,11 @@ public class PrefsUtil {
     public static Map<String, ?> getAll(Context context) {
         if (checkFileName()) throw new NullPointerException("shared preferences file name is null");
 
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        if (null == sp) {
+        SharedPreferences preferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        if (null == preferences) {
             return null;
         }
-        return sp.getAll();
+        return preferences.getAll();
     }
 
     public static void remove(Context context, String... VarArgs) {
@@ -182,8 +182,8 @@ public class PrefsUtil {
     public static boolean contains(Context context, String key) {
         if (checkFileName()) throw new NullPointerException("shared preferences file name is null");
 
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        return null != sp && sp.contains(key);
+        SharedPreferences preferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        return null != preferences && preferences.contains(key);
     }
 
     public static void save(Context context, Bundle bundle) {
@@ -214,11 +214,11 @@ public class PrefsUtil {
         if (checkFileName()) throw new NullPointerException("shared preferences file name is null");
 
         Set<String> set = new HashSet<>();
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        if (sp == null) {
+        SharedPreferences preferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        if (preferences == null) {
             return null;
         }
-        return sp.getStringSet(key, set);
+        return preferences.getStringSet(key, set);
     }
 
 }

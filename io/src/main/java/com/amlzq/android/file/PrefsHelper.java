@@ -10,7 +10,8 @@ import java.util.Map;
 /**
  * Created by amlzq on 2019/4/9.
  * SharedPreferences helper
- * 来自:https://blog.csdn.net/lmj623565791/article/details/38965311
+ *
+ * @reference https://blog.csdn.net/lmj623565791/article/details/38965311
  */
 public class PrefsHelper {
 

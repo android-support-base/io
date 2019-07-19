@@ -25,10 +25,10 @@ public class ObjectBean<T> {
      */
     public T data;
 
-    // data 为 array 的情况，且正常
+    // data 为 json object 的情况，且正常
     // {"code":0,"message":"success","data":{xxx}}
     // {"ret":0,"msg":"success","data":{xxx}}
-    // data 为 array 的情况，且异常
+    // data 为 json object 的情况，且异常
     // {"code":xxx,"message":"xxx","data":{}}
     // {"ret":xxx,"msg":"xxx","data":{}}
 

@@ -1,4 +1,4 @@
-package com.amlzq.android.file;
+package com.amlzq.android.disk;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,18 +15,26 @@ import java.util.Map;
  */
 public class PrefsHelper {
 
-    public static String FILE_NAME;
+    private String mFileName;
+
+    public String getFileName() {
+        return mFileName;
+    }
+
+    public void setFileName(String mFileName) {
+        this.mFileName = mFileName;
+    }
+
+    public void put(Context context, String key, Object object) {
+        put(context, mFileName, Context.MODE_PRIVATE, key, object);
+    }
 
     /**
      * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法
      */
-    public void put(Context context, String key, Object object) {
-        put(context, FILE_NAME, key, object);
-    }
-
-    public void put(Context context, String spName, String key, Object object) {
-        SharedPreferences sp = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
+    public void put(Context context, String name, int mode, String key, Object object) {
+        SharedPreferences preferences = context.getSharedPreferences(name, mode);
+        SharedPreferences.Editor editor = preferences.edit();
         if (object instanceof String) {
             editor.putString(key, (String) object);
         } else if (object instanceof Integer) {
@@ -43,25 +51,25 @@ public class PrefsHelper {
         SharedPreferencesCompat.apply(editor);
     }
 
+    public Object get(Context context, String key, Object defValue) {
+        return get(context, mFileName, Context.MODE_PRIVATE, key, defValue);
+    }
+
     /**
      * 得到保存数据的方法，我们根据默认值得到保存的数据的具体类型，然后调用相对于的方法获取值
      */
-    public Object get(Context context, String key, Object defaultObject) {
-        return get(context, FILE_NAME, key, defaultObject);
-    }
-
-    public Object get(Context context, String spName, String key, Object defaultObject) {
-        SharedPreferences sp = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
-        if (defaultObject instanceof String) {
-            return sp.getString(key, (String) defaultObject);
-        } else if (defaultObject instanceof Integer) {
-            return sp.getInt(key, (Integer) defaultObject);
-        } else if (defaultObject instanceof Boolean) {
-            return sp.getBoolean(key, (Boolean) defaultObject);
-        } else if (defaultObject instanceof Float) {
-            return sp.getFloat(key, (Float) defaultObject);
-        } else if (defaultObject instanceof Long) {
-            return sp.getLong(key, (Long) defaultObject);
+    public Object get(Context context, String name, int mode, String key, Object defValue) {
+        SharedPreferences preferences = context.getSharedPreferences(name, mode);
+        if (defValue instanceof String) {
+            return preferences.getString(key, (String) defValue);
+        } else if (defValue instanceof Integer) {
+            return preferences.getInt(key, (Integer) defValue);
+        } else if (defValue instanceof Boolean) {
+            return preferences.getBoolean(key, (Boolean) defValue);
+        } else if (defValue instanceof Float) {
+            return preferences.getFloat(key, (Float) defValue);
+        } else if (defValue instanceof Long) {
+            return preferences.getLong(key, (Long) defValue);
         }
         return null;
     }
@@ -70,13 +78,13 @@ public class PrefsHelper {
      * 移除某个key值已经对应的值
      */
     public void remove(Context context, String key) {
-        remove(context, FILE_NAME, key);
+        remove(context, mFileName, key);
     }
 
-    public void remove(Context context, String spName, String key) {
-        SharedPreferences sp = context.getSharedPreferences(spName,
+    public void remove(Context context, String name, String key) {
+        SharedPreferences preferences = context.getSharedPreferences(name,
                 Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
+        SharedPreferences.Editor editor = preferences.edit();
         editor.remove(key);
         SharedPreferencesCompat.apply(editor);
     }
@@ -85,39 +93,39 @@ public class PrefsHelper {
      * 清除所有数据
      */
     public void clear(Context context) {
-        clear(context, FILE_NAME);
+        clear(context, mFileName);
     }
 
-    public void clear(Context context, String spName) {
-        SharedPreferences sp = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
+    public void clear(Context context, String name) {
+        SharedPreferences preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         SharedPreferencesCompat.apply(editor);
+    }
+
+    public boolean contains(Context context, String key) {
+        return contains(context, mFileName, key);
     }
 
     /**
      * 查询某个key是否已经存在
      */
-    public boolean contains(Context context, String key) {
-        return contains(context, FILE_NAME, key);
+    public boolean contains(Context context, String name, String key) {
+        SharedPreferences preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
+        return preferences.contains(key);
     }
 
-    public boolean contains(Context context, String spName, String key) {
-        SharedPreferences sp = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
-        return sp.contains(key);
+    public Map<String, ?> getAll(Context context) {
+        return getAll(context, mFileName);
     }
 
     /**
      * 返回所有的键值对
      */
-    public Map<String, ?> getAll(Context context) {
-        return getAll(context, FILE_NAME);
-    }
-
-    public Map<String, ?> getAll(Context context, String spName) {
-        SharedPreferences sp = context.getSharedPreferences(spName,
+    public Map<String, ?> getAll(Context context, String name) {
+        SharedPreferences preferences = context.getSharedPreferences(name,
                 Context.MODE_PRIVATE);
-        return sp.getAll();
+        return preferences.getAll();
     }
 
     /**

@@ -76,3 +76,11 @@ SharedPreferences
 - JackJSON
 
 ### 内存
+
+
+### 三级缓存
+- 内存，磁盘，远程
+- []()
+
+### 存储方式的使用场景
+- [Pros and Cons of SQLite and Shared Preferences](https://stackoverflow.com/questions/6276358/pros-and-cons-of-sqlite-and-shared-preferences)

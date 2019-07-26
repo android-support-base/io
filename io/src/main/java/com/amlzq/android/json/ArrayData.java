@@ -1,4 +1,4 @@
-package com.amlzq.android.bean;
+package com.amlzq.android.json;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @param <T>
  */
-public class ArrayBean<T> {
+public class ArrayData<T> {
 
     /**
      * 结果码
@@ -27,10 +27,10 @@ public class ArrayBean<T> {
      */
     public List<T> data;
 
-    // data 为 json array 的情况，且正常
+    // data 为 json array 的正常情况
     // {"code":0,"message":"success","data":[xxx]}
     // {"ret":0,"msg":"success","data":[xxx]}
-    // data 为 json array 的情况，且异常
+    // data 为 json array 的异常情况
     // {"code":xxx,"message":"xxx","data":[]}
     // {"ret":xxx,"msg":"xxx","data":[]}
 

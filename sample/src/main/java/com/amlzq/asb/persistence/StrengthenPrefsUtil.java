@@ -1,10 +1,11 @@
-package com.amlzq.asb;
+package com.amlzq.asb.persistence;
 
 import android.content.Context;
 import android.text.TextUtils;
 
 import com.amlzq.android.encode.Base64Util;
-import com.amlzq.android.file.PrefsUtil;
+import com.amlzq.android.util.PrefsUtil;
+import com.amlzq.asb.GsonUtil;
 
 public class StrengthenPrefsUtil {
 

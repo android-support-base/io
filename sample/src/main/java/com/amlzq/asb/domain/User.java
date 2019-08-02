@@ -24,5 +24,6 @@ public abstract class User {
     public String wechat; // 微信号
     public String weibo; // 微博
     public String qq; // 腾讯QQ
+    public String alipay; // 支付宝
 
 }

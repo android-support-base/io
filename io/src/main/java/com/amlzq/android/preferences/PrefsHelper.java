@@ -1,4 +1,4 @@
-package com.amlzq.android.disk;
+package com.amlzq.android.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;

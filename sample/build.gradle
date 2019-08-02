@@ -26,5 +26,10 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
 
     implementation project(':io')
+    implementation "com.amlzq.android:log:${rootProject.ext.logVersion}"
+    implementation "com.amlzq.android:ui:${rootProject.ext.uiVersion}"
+    implementation "com.amlzq.android:utils:${rootProject.ext.utilsVersion}"
+
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.jakewharton:disklrucache:2.0.2'// 磁盘LRU缓存
 }

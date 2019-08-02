@@ -1,7 +1,4 @@
 # android-support-io
-* dependencies Android Platform API
-* dependencies JDK API
-* dependencies support-annotations
 
 ## 发布
 * 最新版本
@@ -13,7 +10,6 @@
 * 使用
 ```
 dependencies{
-    ...
     implementation 'com.amlzq.android:io:latest.integration'
 }
 ```
@@ -84,3 +80,7 @@ SharedPreferences
 
 ### 存储方式的使用场景
 - [Pros and Cons of SQLite and Shared Preferences](https://stackoverflow.com/questions/6276358/pros-and-cons-of-sqlite-and-shared-preferences)
+
+### DiskLruCache
+- [Google DiskLruCache](https://android.googlesource.com/platform/libcore/+/android-4.1.1_r1/luni/src/main/java/libcore/io/DiskLruCache.java)
+- [JakeWharton/DiskLruCache](https://github.com/JakeWharton/DiskLruCache)

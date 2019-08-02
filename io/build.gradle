@@ -40,46 +40,58 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
 
     implementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+
+    implementation "com.amlzq.android:log:${rootProject.ext.logVersion}"
+    implementation "com.amlzq.android:utils:${rootProject.ext.utilsVersion}"
 }
 
 // 以下是发布到远程 jCenter 仓库配置
-//apply plugin: 'com.novoda.bintray-release'
-//
-//buildscript {
-//    repositories {
-//        jcenter()
-//    }
-//    dependencies {
-//        classpath 'com.novoda:bintray-release:0.8.1'
-//    }
-//}
-//
-//// 解决注释里面有中文导致maven错误：编码GBK的不可映射字符
-//tasks.withType(Javadoc) { options.encoding = "UTF-8" }
-//
-//publish {
-//    userOrg = 'amlzq' // 组织用户名
-//    repoName = 'android-support-base' // maven类型仓库名称
-//    groupId = 'com.amlzq.android' //
-//    artifactId = 'io'
-//    publishVersion = android.defaultConfig.versionName
-//    desc = 'android support api io'
-//    website = 'https://github.com/amlzq/android-support-base/tree/android-support-io'
-//    repository = 'https://github.com/amlzq/android-support-base.git'
-//}
+// 执行gradlew clean build bintrayUpload -PbintrayUser=${BINTRAY_USERNAME} -PbintrayKey=${BINTRAY_KEY} -PdryRun=false
+apply plugin: 'com.novoda.bintray-release'
 
-// 以下是发布到本地 maven 仓库配置
-apply plugin: 'maven'
-
-// 获取local.properties的内容
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-uploadArchives {
-    repositories.mavenDeployer {
-        repository(url: properties.getProperty("mavenLocal"))
-        pom.groupId = "com.amlzq.android"
-        pom.artifactId = "io"
-        pom.version = android.defaultConfig.versionName
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.9.1'
     }
 }
+
+// 解决注释里面有中文导致maven错误：编码GBK的不可映射字符
+// 由于一些javadoc错误，
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet') // 忽略javadoc错误
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
+
+publish {
+    userOrg = 'amlzq' // 组织用户名
+    repoName = 'android-support-base' // maven类型仓库名称
+    groupId = 'com.amlzq.android' //
+    artifactId = 'io'
+    publishVersion = android.defaultConfig.versionName
+    desc = 'io api'
+    website = 'https://github.com/android-support-base/io'
+    repository = 'https://github.com/android-support-base/io.git'
+}
+
+//// 以下是发布到本地 maven 仓库配置
+//apply plugin: 'maven'
+//
+//// 获取local.properties的内容
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        repository(url: properties.getProperty("mavenLocal"))
+//        pom.groupId = "com.amlzq.android"
+//        pom.artifactId = "io"
+//        pom.version = android.defaultConfig.versionName
+//    }
+//}
